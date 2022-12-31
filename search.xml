@@ -11,6 +11,12 @@
         <content type="html"><![CDATA[<h3 id="1、html-的简介："><a href="#1、html-的简介：" class="headerlink" title="1、html 的简介："></a>1、html 的简介：</h3><h5 id="1-1、网页："><a href="#1-1、网页：" class="headerlink" title="1.1、网页："></a>1.1、网页：</h5><p><strong>网站</strong>是指在因特网上根据一定的规则，使用 HTML 等制作的用于展示特定内容相关的<strong>网页集合</strong>；</p><p>网页是网站的一个子页，通常是 HTML 格式的文件，他需要通过浏览器来阅读。</p><p><strong>网页是构成网站的基本元素</strong>，它通常由图片、连接、文字、声音、视频等元素组成，通常我们看到的网页，常见以.htm 或.html 后缀结尾的文件，因此将其称为<strong>HTML 文件</strong>。</p><h5 id="1-2、HTML"><a href="#1-2、HTML" class="headerlink" title="1.2、HTML"></a>1.2、HTML</h5><p><strong>HTML</strong>指的是**超文本标记语言(Hyper Text Markup Language)**，是描述网页的一种语言。HTML 不是一种编程语言，而是一种标记语言(markup language);</p><p>标记语言是一套标记标签(markup tag)。</p><p>超文本：1、它可以加入图片、声音、动画、多媒体等内容(超越了文本的限制)。</p><p>​ 2、它还可以从一个文件跳转到另一个文件，与世界各地主机的文件连接(超级链接文本)。</p><h5 id="1-3、网页的形成"><a href="#1-3、网页的形成" class="headerlink" title="1.3、网页的形成"></a>1.3、网页的形成</h5><p>网页是由网页元素组成的，这些元素是利用 html 标签描述出来，然后通过浏览器解析来显示给用户。</p><h3 id="2、浏览器"><a href="#2、浏览器" class="headerlink" title="2、浏览器"></a>2、浏览器</h3><p><strong>常用浏览器：</strong>浏览器是网页显示、运行的平台。常用的浏览器由谷歌、火狐、Edge、Safari、Opera 等。</p><p><strong>浏览器的内核：</strong>浏览器内核是浏览器的核心，也称“<strong>渲染引擎</strong>”，用来解释网页语法并渲染到网页上，浏览器<strong>内核</strong>决定了浏览器该如何显示网页内容以及页面的格式信息 。</p><p><strong>浏览器的内核分类：</strong>浏览器的内核分为两部分，分别是<strong>渲染引擎</strong>和<strong>JS 引擎</strong>。</p><p><strong>渲染引擎：</strong>负责获取网页的内容并显示，不同的浏览器内核对网页的解析渲染也不同 。</p><p><strong>JS 引擎：</strong>负责解析 Javascript 语言，执行 javascript 语言来实现网页的<strong>动态效果</strong> 。</p><p><strong>常见浏览器的内核：</strong>Trident、Gecko、Blink、Webkit。</p><p><strong>IE：</strong>Trident 内核，也是俗称的 IE 内核<br><strong>Chrome：</strong>统称为 Chromium 内核或 Chrome 内核，以前是 Webkit 内核，现在是 Blink 内核<br><strong>Firefox：</strong>Gecko 内核，俗称 Firefox 内核<br><strong>Safari：</strong>Webkit 内核<br><strong>Opera：</strong>最初是自己的 Presto 内核，后来是 Webkit，现在是 Blink 内核<br><strong>360、猎豹：</strong>IE+Chrome 双内核<br><strong>搜狗、遨游、QQ 浏览器：</strong>Trident（兼容模式）+Webkit（高速模式）<br><strong>百度、世界之窗：</strong>IE 内核<br><strong>2345 浏览器：</strong>以前是 IE 内核，现在也是 IE+Chrome 双内核</p><h3 id="3、web-标准"><a href="#3、web-标准" class="headerlink" title="3、web 标准"></a>3、web 标准</h3><p>**web 标准:**由 W3C 组织和其他标准化组织指定的一系列标准的集合。W3C(万维网联盟)是国际最著名的标准化组织。</p><p><strong>web 标准的构成</strong>：主要包括**结构(Structure)<strong>、</strong>表现(Presentation)<strong>和</strong>行为(Behavior)**三个方面。</p><p><strong>结构：</strong>给页面搭建基本的框架结构。 html ，类比于建房子的时候要搭的地基跟钢筋。</p><p><strong>表现：</strong>页面的美化，装饰。 css 相当于给房子加背景和家具的排列布局。</p><p><strong>行为：</strong>页面的轮播图，返回顶部 Javascript 相当于房子加灯的开关。</p><p>结构层 html 和表现层 css，是 W3C 制定的规范，万维网联名。</p><p>行为层 js，是 ECMA 制定的规范，欧洲计算机协会。</p><h3 id="4、HTML-语言"><a href="#4、HTML-语言" class="headerlink" title="4、HTML 语言"></a>4、HTML 语言</h3><h5 id="4-1、HTML-语法规范"><a href="#4-1、HTML-语法规范" class="headerlink" title="4.1、HTML 语法规范"></a>4.1、HTML 语法规范</h5><p><strong>HTML 文档也被称为网页</strong></p><p>1.后缀名.html</p><p>2.文件名格式： 主文件名.后缀名</p><p><strong>构成网页的基本单位</strong></p><p>1.标签：由尖括号括起来的关键词</p><p>2.单标签：&lt;标签名 &gt;或 &lt;标签名 &#x2F;&gt;</p><p>3.双标签：&lt;开始标签名&gt;[内容]&lt;&#x2F;结束标签名&gt;</p><p>4.元素：标签及内容的整体</p><p>5.属性</p><p>&lt;标签名 属性名 1&#x3D;”属性值 1” 属性名 2&#x3D;”属性值 2”&gt;&lt;&#x2F;标签名&gt;</p><p>&lt;后面的第一个单词叫做标签的名字，标签名空格之后的叫做标签的属性。</p><p>6.属性由属性名和属性值组成，属性名和属性值用等号连接</p><p>7.属性值用引号引起来。 多个属性之间用空格隔开。</p><p><strong>4、HTML 注释</strong><br>****1.注释即对代码的解释和说明，不会被浏览器解析执行</p><p>2.注释内容不会出现在网页中，只是对代码的一个说明</p><p>语法样式</p><!-- html注释内容 --><p>HTML 中的注释以<code>&lt;!--</code>开头，以<code>--&gt;</code>结束，开始和结束中间为注释内容。</p><h5 id="4-2、HTML-文档的基本结构"><a href="#4-2、HTML-文档的基本结构" class="headerlink" title="4.2、HTML 文档的基本结构"></a>4.2、HTML 文档的基本结构</h5><!DOCTYPE html><!--    <!doctype> 文件类型定义DTD    作用：告诉浏览器该文档的版本信息，让浏览器解析器知道使用哪种语法解析文档    文档第一代码是HTML5标准网页声明，告知浏览器用HTML5标准解析此网页。    不是标签，是声明语句    必须写在HTML文档的第一行--><html lang="en"><!--  网页的根元素  定义整个HTML文档，包含head和body<p>lang 属性</p><ul><li>作用：定义当前文档显示文字的语言</li><li>语法：lang&#x3D;“en”<br>(lang 是 language 的简写)</li><li>取值:<br>en 定义语言为英语<br>zh-CN 定义语言为中文 –&gt;</li></ul><head>    <!--网页的头部信息 其内容不会显示在网页中定义文档的头部，包含文档的标题（title），可以包含文档脚本（script），样式（style），meta信息以及更多的其他信息。-->    <meta charset="UTF-8">    <!-- 文档字符集字符集(Character set)是多个字符的集合，便于计算机识别和存储各种文字。在<head>标签内,通过<meta> 标签的 charset 属性来规定 HTML 文档应该使用哪种字符编码。            charset属性:设置编码方式            UTF-8：万国码，通用性较好(2)常用的字符集- UTF-8被称为万国码，包含全世界所有国家需要用到的字符- GB2312简单中文，包括6763个汉字- GBK包含全部中文字符，是GB2312的扩展，加入对繁体字的支持，兼容GB2312- BIG5繁体中文，港澳台等用        -->    <title>标题</title>    <!--    网页标题    添加到收藏夹时的标题显示在搜索引擎结果中的页面标题。    -->    </head><body>    <!-- 网页的主体内容     定义文档的主体，在浏览器窗口中可以看到的所有内容都包含在它内部。-->    父子关系——嵌套关系    兄弟关系——并列关系</body></html><h3 id="5、HTML-标签"><a href="#5、HTML-标签" class="headerlink" title="5、HTML 标签"></a>5、HTML 标签</h3><h5 id="5-1、标题标签"><a href="#5-1、标题标签" class="headerlink" title="5.1、标题标签"></a>5.1、标题标签</h5><p>HTML 标题（Heading）是通过&lt; h1 &gt; - &lt; h6 &gt; 标签来定义的。</p><h5 id="5-2、段落标签-paragraph"><a href="#5-2、段落标签-paragraph" class="headerlink" title="5.2、段落标签(paragraph )"></a>5.2、段落标签(paragraph )</h5><p>在 html 标签中，<p>标签用于定义段落，它可以将整个网页划分为若干个段落。</p><p><strong>特点：</strong></p><p>文本在一个段落中会根据浏览器的窗口大小自动换行；</p><p>段落和段落之间保有空隙；</p><h5 id="5-3、换行标签-break"><a href="#5-3、换行标签-break" class="headerlink" title="5.3、换行标签(break)"></a>5.3、换行标签(break)</h5><p>在 html 中，一个段落中的文字会从左到右依次排列，直至浏览器窗口的右端，才会自动换行。如果希望某段文本强制换行显示，就需要使用换行标签；</p><br/><p>换行标签是单标签；</p><h5 id="5-4、文本格式化标签"><a href="#5-4、文本格式化标签" class="headerlink" title="5.4、文本格式化标签"></a>5.4、文本格式化标签</h5><p>标签语义：突出重要性，比普通文字更重要；</p><p>5.4.1、加粗标签</p><p><strong></strong>或者<b></b>;</p><p>更推荐使用<strong>标签加粗，语义更加强烈；</p><p>5.4.2、倾斜标签</p><p><em></em>或者<i></i>;</p><p>更推荐使用<em>标签加粗，语义更加强烈；</p><p>5.4.3、删除线</p><p><del></del>或者<s></s>;</p><p>更推荐使用<del>标签加粗，语义更加强烈；</p><p>5.4.4、下划线</p><p><ins></ins>或者<u></u>;</p><p>更推荐使用<ins>标签加粗，语义更加强烈；</p><h5 id="5-5、div-和-span-标签"><a href="#5-5、div-和-span-标签" class="headerlink" title="5.5、div 和 span 标签"></a>5.5、div 和 span 标签</h5><div>和<span>标签没有语义，他们就是一个盒子，用来装内容；<p>div 是 divsion 的缩写，表示分区、分割。span 表示花都、跨距。</p><p><strong>特点：</strong></p><p>div 标签用来布局，但是一行只能放一个<div>，是一个大盒子；</p><p>span 标签用来布局，一行上可以有多个<span>，是一个小盒子；</p><h5 id="5-6、图像标签-image"><a href="#5-6、图像标签-image" class="headerlink" title="5.6、图像标签(image)"></a>5.6、图像标签(image)</h5><p>在 html 标签中，<img>标签用于定义 html 页面中的图像；</p><img arc="图像URL"><p>src 是 img 标签的必须属性，它用于指定图像文件的路径和文件名；</p><p>图像的其他标签：</p><p>alt:文本，替换文本，图像不能显示的文字；</p><p>title:文本，提示文本，鼠标放到图像上，显示的文字；</p><p>width:像素，设置图像的宽度；</p><p>height:像素，设置图像的高度；</p><p>border:像素，设置图像的边框粗细；</p><p><strong>图像标签的注意点：</strong></p><p>图像标签可以拥有多个属性，必须写在标签名的后面；</p><p>属性之间不分先后顺序，标签名与属性、属性与属性之间均以空格分开；</p><p>属性采用键值对的格式，即 key &#x3D; “value”的格式，属性 &#x3D; “属性值”；</p><h5 id="5-7、链接标签-anchor"><a href="#5-7、链接标签-anchor" class="headerlink" title="5.7、链接标签(anchor)"></a>5.7、链接标签(anchor)</h5><p>在 html 标签中，<a>标签用于定义超链接，作用是从一个页面链接到另一个页面；</p><p>1、链接标签的语法格式</p><p><code>&lt;a herf=&quot;跳转目标&quot; target=&quot;目标窗口的弹出方式&quot; &gt;文本或图像&lt;/a&gt;</code></p><p>herf :用于指定链接目标的 url 地址，当为标签应用 herf 属性时，它就具有了超链接的功能；</p><p>target :用于指定链接页面的打开方式，其中<code>_self</code>为默认值，<code>_blank</code>为在新窗口；</p><p>2、空链接</p><p>如果没有确定链接目标时，<code>&lt;a herf=&quot;#&quot;&gt;首页&lt;/a&gt;</code></p><p>3、下载链接</p><p>如果 href 里面地址是一个文件或者压缩包，会下载这个文件。</p><p>4、网页元素链接</p><p>在网页中各种元素，如文本、图像、表格、音频、视频都可以添加超链接</p><p>5、内部链接</p><p>网站内部页面之间的相互链接。直接链接内部页面的名称即可。</p><p><strong>6、锚点链接</strong></p><p>点击锚点链接，就可以快速定位到页面中的某个位置；</p><p>在链接文本的 href 属性中，设置属性值为#名字的形式，如<code>&lt;a href = &quot;#two&quot;&gt;第二集&lt;/a&gt;</code></p><p>找到目标位置标签,里面添加一个 id 属性&#x3D;刚才的名字，如<code>&lt;a id = &quot;two&quot;&gt;第二集&lt;/a&gt;</code></p><h5 id="5-8、特殊字符"><a href="#5-8、特殊字符" class="headerlink" title="5.8、特殊字符"></a>5.8、特殊字符</h5><p><img src="C:\Users\王梁\AppData\Local\Temp\1668260552154.png" alt="1668260552154"></p><h3 id="6、表格标签"><a href="#6、表格标签" class="headerlink" title="6、表格标签"></a>6、表格标签</h3><h5 id="1、表格的作用："><a href="#1、表格的作用：" class="headerlink" title="1、表格的作用："></a>1、表格的作用：</h5><p>表格用于展示数据，因为它可以使数据显示的非常规整，可读性非常好。</p><p><strong>表格的基本语法：</strong></p><p><code>&lt;table&gt;&lt;/table&gt;</code>是用于定义表格的标签。</p><p><code>&lt;tr&gt;&lt;/tr&gt;</code>标签用于定义表格中的行，必须嵌套在<code>&lt;table&gt;&lt;/table&gt;</code>标签中；</p><p><code>&lt;td&gt;&lt;/td&gt;</code>用于定义表格中的单元格，必须嵌套在<code>&lt;tr&gt;&lt;/tr&gt;</code>标签中。</p><p>字母 td 指表格数据(table data),即数据单元格的内容。</p><h5 id="2、表头单元格："><a href="#2、表头单元格：" class="headerlink" title="2、表头单元格："></a>2、表头单元格：</h5><p>一般表头单元格位于表格的第一行或第一列，表头单元格里面的文本内容加粗居中显示。</p><p><code>&lt;th&gt;&lt;/th&gt;</code>标签表示 HTML 表格的表头部分(table head 的缩写)</p><h5 id="3、单元格属性："><a href="#3、单元格属性：" class="headerlink" title="3、单元格属性："></a>3、单元格属性：</h5><table><thead><tr><th>属性名</th><th>属性值</th><th>描述</th></tr></thead><tbody><tr><td>align</td><td>left、center、right</td><td>规定表格相对周围的对齐方式；</td></tr><tr><td>border</td><td>1 或””</td><td>规定表格周围是否有边框，默认””,没有边框；</td></tr><tr><td>cellpadding</td><td>像素值</td><td>规定单元边缘与其内容之间的空白，默认 1 像素；</td></tr><tr><td>cellspacing</td><td>像素值</td><td>规定单元格之间的空白，默认 2 像素；</td></tr><tr><td>width</td><td>像素值或百分比</td><td>规定表格的宽度；</td></tr></tbody></table><p><strong>表格结构标签：</strong></p><p><code>&lt;thead&gt;&lt;/thead&gt;</code>用于定义表格的头部，<code>&lt;thead&gt;</code>内部必须拥有<code>&lt;tr&gt;</code>标签，一般位于第一行；</p><p><code>&lt;tbody&gt;&lt;/tbody&gt;</code>用于定义表格的主体，主要放数据本体；</p><p>以上标签都是放在<code>&lt;table&gt;&lt;/table&gt;</code>标签中的；</p><p><strong>合并单元格：</strong></p><p>跨行合并：rowspan &#x3D; “合并单元格的个数”；</p><p>跨列合并：colspan &#x3D; “合并单元格的个数”；</p>]]></content>
       
       
+      <categories>
+          
+          <category> 计算机基础 </category>
+          
+      </categories>
+      
       
     </entry>
     
@@ -28,14 +34,33 @@
     </entry>
     
     
+    
+    <entry>
+      <title>HTML5</title>
+      <link href="/2022/12/31/JAVA/Java%E5%9F%BA%E7%A1%80/java/"/>
+      <url>/2022/12/31/JAVA/Java%E5%9F%BA%E7%A1%80/java/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
   
   
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>categories</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -44,9 +69,9 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

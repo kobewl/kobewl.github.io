@@ -4,8 +4,8 @@ dark()
 new Vue({
     data: function () {
         this.$notify({
-            title: "复制成功",
-            message: "若要转载最好保留原文链接哦，给你一个大大的赞！！",
+            title: "你已被发现😜",
+            message: "小伙子，扒源记住要遵循GPL协议",
             position: 'top-left',
             offset: 50,
             showClose: true,

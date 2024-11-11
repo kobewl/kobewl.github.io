@@ -1,8 +1,0 @@
-<div name="我是墙" id="recent-posts">
-  <!-- id=>type  recent-posts=>name    -->
-  <div name="我是画框">
-    <div name="我是纸">
-      <!--这里通过js挂载magnet，也就是画画-->
-    </div>
-  </div>
-</div>

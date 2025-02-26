@@ -19,7 +19,7 @@
   <!-- 标签/分类云 -->
   <div class="ui segment terms-cloud">
     {{ range .Data.Terms.Alphabetical }}
-      <a class="ui label terms-item" href="{{ .Page.Permalink }}" style="font-size: {{ (add 0.8 (mul 0.02 (len .Pages))) }}em;">
+      <a class="ui label terms-item" href="{{ .Page.RelPermalink }}" style="font-size: {{ (add 0.8 (mul 0.02 (len .Pages))) }}em;">
         {{ if eq $.Type "tags" }}
           <i class="tag icon"></i>
         {{ else }}
@@ -37,17 +37,17 @@
       <div class="item">
         <i class="large {{ if eq $.Type "tags" }}tag{{ else }}folder open outline{{ end }} middle aligned icon"></i>
         <div class="content">
-          <a class="header" href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
+          <a class="header" href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
           <div class="description">包含 {{ len .Pages }} 篇文章</div>
           <div class="list">
             {{ range first 5 .Pages }}
-              <a class="item" href="{{ .Permalink }}">
+              <a class="item" href="{{ .RelPermalink }}">
                 <i class="file text outline icon"></i>
                 {{ .Title }}
               </a>
             {{ end }}
             {{ if gt (len .Pages) 5 }}
-              <a class="item more" href="{{ .Page.Permalink }}">
+              <a class="item more" href="{{ .Page.RelPermalink }}">
                 <i class="ellipsis horizontal icon"></i>
                 查看更多
               </a>

@@ -2,7 +2,11 @@
 <div class="ui container">
   <!-- 分类标题 -->
   <h1 class="ui dividing header">
-    <i class="tags icon"></i>
+    {{ if eq .Type "tags" }}
+      <i class="tags icon"></i>
+    {{ else }}
+      <i class="folder open outline icon"></i>
+    {{ end }}
     <div class="content">
       {{ .Title }}
       <div class="sub header">{{ .Description }}</div>
@@ -26,7 +30,7 @@
     {{ range .Pages }}
     <div class="item">
       <div class="content">
-        <a class="header" href="{{ .Permalink }}">{{ .Title }}</a>
+        <a class="header" href="{{ .RelPermalink }}">{{ .Title }}</a>
         <div class="meta">
           <span><i class="calendar alternate outline icon"></i>{{ .Date.Format "2006-01-02" }}</span>
           <span><i class="clock outline icon"></i>{{ .ReadingTime }} 分钟阅读</span>
@@ -40,7 +44,7 @@
           {{ end }}
         </div>
         <div class="extra">
-          <a class="ui right floated primary button" href="{{ .Permalink }}">
+          <a class="ui right floated primary button" href="{{ .RelPermalink }}">
             阅读全文
             <i class="right chevron icon"></i>
           </a>

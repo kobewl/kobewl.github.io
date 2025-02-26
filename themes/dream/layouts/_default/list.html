@@ -1,0 +1,89 @@
+{{ define "main" }}
+<div class="ui container">
+  <!-- 页面标题 -->
+  <h1 class="ui dividing header">{{ .Title }}</h1>
+  
+  <!-- 页面内容 -->
+  {{ .Content }}
+  
+  <!-- 文章列表 -->
+  <div class="ui divided items">
+    {{ range .Pages }}
+    <div class="item">
+      <div class="content">
+        <a class="header" href="{{ .Permalink }}">{{ .Title }}</a>
+        <div class="meta">
+          <span>{{ .Date.Format "2006-01-02" }}</span>
+          <span>{{ .ReadingTime }} 分钟阅读</span>
+        </div>
+        <div class="description">
+          {{ .Summary }}
+        </div>
+        <div class="extra">
+          {{ if .Params.categories }}
+            {{ range .Params.categories }}
+              <a class="ui label" href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">
+                <i class="folder open outline icon"></i>{{ . }}
+              </a>
+            {{ end }}
+          {{ end }}
+          {{ if .Params.tags }}
+            {{ range .Params.tags }}
+              <a class="ui label" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">
+                <i class="tag icon"></i>{{ . }}
+              </a>
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</div>
+
+<style>
+  .ui.divided.items {
+    margin-top: 2rem;
+  }
+  
+  .ui.divided.items .item {
+    padding: 1.5rem 0;
+    transition: background-color 0.3s ease;
+  }
+  
+  .ui.divided.items .item:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .ui.divided.items .header {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+  
+  .ui.divided.items .meta {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .ui.divided.items .meta span {
+    margin-right: 1rem;
+  }
+  
+  .ui.divided.items .description {
+    margin-bottom: 1rem;
+    color: #34495e;
+    line-height: 1.6;
+  }
+  
+  .ui.divided.items .extra {
+    margin-top: 0.5rem;
+  }
+  
+  .ui.divided.items .extra .label {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+</style>
+{{ end }} 

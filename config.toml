@@ -3,6 +3,11 @@ languageCode = "zh-cn"
 title = "我的个人博客"
 theme = "dream"
 
+# 启用分类和标签页面
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
 [params]
   # 背景图片
   background = "#f7f7f7"

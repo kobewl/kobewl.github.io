@@ -17,7 +17,12 @@
           <span>{{ .ReadingTime }} 分钟阅读</span>
         </div>
         <div class="description">
-          {{ .Summary }}
+          <!-- 显示简短摘要，限制在100个字符以内 -->
+          {{ if .Description }}
+            {{ .Description | truncate 100 }}
+          {{ else }}
+            {{ .Summary | plainify | truncate 100 }}
+          {{ end }}
         </div>
         <div class="extra">
           {{ if .Params.categories }}
@@ -75,6 +80,11 @@
     margin-bottom: 1rem;
     color: #34495e;
     line-height: 1.6;
+    /* 限制最多显示3行 */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   
   .ui.divided.items .extra {

@@ -1,0 +1,1086 @@
+{{ define "main" }}
+<div class="homepage-content">
+  <!-- 主页顶部背景区域 -->
+  <div class="hero-section">
+    <div class="hero-overlay">
+      <!-- 添加更多星星和动态效果 -->
+      <div id="stars"></div>
+      <div id="stars2"></div>
+      <div id="stars3"></div>
+      <div class="nebula-effect"></div>
+    </div>
+    <div class="hero-content">
+      <!-- 添加淡入动画效果 -->
+      <div class="avatar-container fade-in">
+        <img src="{{ .Site.Params.avatar }}" alt="头像" class="avatar-image">
+      </div>
+      <h1 class="hero-title slide-up">{{ .Site.Params.author }}</h1>
+      
+      <!-- 使用动态语录和打字机效果 -->
+      <div class="typewriter-container">
+        <p id="hitokoto" class="hero-subtitle"></p>
+        <div class="cursor"></div>
+      </div>
+
+      <!-- 社交图标组 -->
+      <div class="social-links pop-in">
+        {{ with .Site.Params.social.github }}
+        <a href="https://github.com/kobewl" target="_blank" class="social-link">
+          <i class="github icon"></i>
+        </a>
+        {{ end }}
+        
+        {{ with .Site.Params.social.twitter }}
+        <a href="{{ . }}" target="_blank" class="social-link">
+          <i class="twitter icon"></i>
+        </a>
+        {{ end }}
+        
+        {{ with .Site.Params.social.email }}
+        <a href="mailto:{{ . }}" class="social-link">
+          <i class="mail icon"></i>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+    
+    <!-- 将向下滚动提示移到最底部，与其他内容分离 -->
+    <div class="scroll-down">
+      <span>向下滚动</span>
+      <i class="chevron down icon pulse"></i>
+    </div>
+  </div>
+
+  <!-- 主页内容区域 -->
+  <div class="content-container">
+    <!-- 探索内容区域 -->
+    <div class="explore-section reveal">
+      <h2 class="section-title">探索内容</h2>
+      <div class="categories-container">
+        {{ range .Site.Params.categories }}
+          <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="category-button glow-on-hover">
+            {{ . }}
+          </a>
+        {{ end }}
+      </div>
+    </div>
+
+    <!-- 最新文章区域 -->
+    <div class="latest-posts reveal">
+      <h2 class="section-title">最新文章</h2>
+      <div class="section-divider"></div>
+      
+      <!-- 文章列表 -->
+      <div class="post-grid">
+        {{ $paginator := .Paginate (where .Site.RegularPages "Type" "post") }}
+        {{ range $paginator.Pages }}
+          <div class="post-card reveal-item">
+            <div class="post-card-content">
+              <a class="post-title" href="{{ .Permalink }}">{{ .Title }}</a>
+              <div class="post-meta">
+                <span class="post-date"><i class="calendar alternate outline icon"></i>{{ .Date.Format "2006-01-02" }}</span>
+                <span class="post-reading-time"><i class="clock outline icon"></i>{{ .ReadingTime }} 分钟阅读</span>
+              </div>
+              <div class="post-summary">
+                {{ .Summary }}
+              </div>
+              <div class="post-footer">
+                <!-- 分类 -->
+                {{ if .Params.categories }}
+                  <div class="post-categories">
+                    <i class="folder open outline icon"></i>
+                    {{ range .Params.categories }}
+                      <a class="ui mini label" href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+                    {{ end }}
+                  </div>
+                {{ end }}
+                
+                <!-- 标签 -->
+                {{ if .Params.tags }}
+                  <div class="post-tags">
+                    <i class="tags icon"></i>
+                    {{ range .Params.tags }}
+                      <a class="ui mini label" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+                    {{ end }}
+                  </div>
+                {{ end }}
+                
+                <a href="{{ .Permalink }}" class="read-more">
+                  阅读全文 <i class="arrow right icon"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+
+      <!-- 分页模块 -->
+      {{ if gt $paginator.TotalPages 1 }}
+        <div class="pagination-section reveal">
+          <div class="page-info">第 {{ $paginator.PageNumber }} 页 / 共 {{ $paginator.TotalPages }} 页</div>
+          <div class="pagination-controls">
+            {{ if $paginator.HasPrev }}
+              <a class="page-link prev" href="{{ $paginator.Prev.URL }}">
+                <i class="angle left icon"></i> 上一页
+              </a>
+            {{ else }}
+              <span class="page-link disabled">
+                <i class="angle left icon"></i> 上一页
+              </span>
+            {{ end }}
+            
+            {{ range $paginator.Pagers }}
+              <a class="page-link{{ if eq . $paginator }} active{{ end }}" href="{{ .URL }}">
+                {{ .PageNumber }}
+              </a>
+            {{ end }}
+            
+            {{ if $paginator.HasNext }}
+              <a class="page-link next" href="{{ $paginator.Next.URL }}">
+                下一页 <i class="angle right icon"></i>
+              </a>
+            {{ else }}
+              <span class="page-link disabled">
+                下一页 <i class="angle right icon"></i>
+              </span>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</div>
+
+<style>
+/* 首页全局样式 */
+.homepage-content {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* 主页顶部背景区域 */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0c0b1d 0%, #1f1b4e 50%, #312b6e 100%);
+  z-index: 1;
+}
+
+/* 星云效果 */
+.nebula-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(76, 0, 255, 0.15) 0%, rgba(76, 0, 255, 0) 70%),
+              radial-gradient(circle at 80% 20%, rgba(0, 196, 255, 0.15) 0%, rgba(0, 196, 255, 0) 70%),
+              radial-gradient(circle at 20% 80%, rgba(124, 0, 255, 0.15) 0%, rgba(124, 0, 255, 0) 70%);
+  opacity: 0.8;
+  z-index: 2;
+  animation: nebulaMove 30s ease infinite alternate;
+}
+
+@keyframes nebulaMove {
+  0% { background-position: 0% 0%, 0% 0%, 0% 0%; }
+  100% { background-position: 10% 10%, -10% -10%, 5% -5%; }
+}
+
+/* 流星效果 */
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 6px white);
+  animation: shootingStar linear forwards;
+  z-index: 3;
+}
+
+@keyframes shootingStar {
+  0% {
+    transform: translateX(0) translateY(0) rotate(-45deg) scale(1);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(400px) translateY(400px) rotate(-45deg) scale(0.1);
+    opacity: 0;
+  }
+}
+
+/* 星星动画增强 - 更多星星 */
+#stars {
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: 1907px 1575px #FFF, 893px 268px #FFF, 1819px 666px #FFF, 366px 1985px #FFF,
+              458px 500px #FFF, 1203px 1250px #FFF, 1629px 892px #FFF, 1922px 1371px #FFF,
+              674px 358px #FFF, 1244px 1621px #FFF, 1402px 189px #FFF, 726px 1680px #FFF,
+              573px 156px #FFF, 1526px 1896px #FFF, 312px 1542px #FFF, 1351px 176px #FFF;
+  animation: animateStar 50s linear infinite;
+  z-index: 3;
+}
+
+#stars:after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: 1907px 1575px #FFF, 893px 268px #FFF, 1819px 666px #FFF, 366px 1985px #FFF,
+              458px 500px #FFF, 1203px 1250px #FFF, 1629px 892px #FFF, 1922px 1371px #FFF,
+              674px 358px #FFF, 1244px 1621px #FFF, 1402px 189px #FFF, 726px 1680px #FFF,
+              573px 156px #FFF, 1526px 1896px #FFF, 312px 1542px #FFF, 1351px 176px #FFF;
+}
+
+#stars2 {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 1170px 1067px #FFF, 1082px 272px #FFF, 1365px 1702px #FFF, 444px 1440px #FFF,
+              89px 968px #FFF, 1829px 1328px #FFF, 734px 67px #FFF, 793px 1075px #FFF,
+              1156px 248px #FFF, 1715px 1052px #FFF, 1816px 1888px #FFF, 661px 647px #FFF;
+  animation: animateStar 100s linear infinite;
+  z-index: 3;
+}
+
+#stars2:after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 1170px 1067px #FFF, 1082px 272px #FFF, 1365px 1702px #FFF, 444px 1440px #FFF,
+              89px 968px #FFF, 1829px 1328px #FFF, 734px 67px #FFF, 793px 1075px #FFF,
+              1156px 248px #FFF, 1715px 1052px #FFF, 1816px 1888px #FFF, 661px 647px #FFF;
+}
+
+#stars3 {
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: 387px 1878px #FFF, 760px 1564px #FFF, 1487px 999px #FFF, 948px 1828px #FFF,
+              1977px 1001px #FFF, 794px 583px #FFF, 1326px 1743px #FFF, 1151px 216px #FFF,
+              1323px 192px #FFF, 1881px 197px #FFF, 779px 159px #FFF, 1312px 617px #FFF;
+  animation: animateStar 150s linear infinite;
+  z-index: 3;
+}
+
+#stars3:after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: 387px 1878px #FFF, 760px 1564px #FFF, 1487px 999px #FFF, 948px 1828px #FFF,
+              1977px 1001px #FFF, 794px 583px #FFF, 1326px 1743px #FFF, 1151px 216px #FFF,
+              1323px 192px #FFF, 1881px 197px #FFF, 779px 159px #FFF, 1312px 617px #FFF;
+}
+
+@keyframes animateStar {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-2000px); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  padding: 2rem;
+  text-align: center;
+  color: white;
+}
+
+/* 动画效果 */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUp 1s ease forwards 0.5s;
+}
+
+.pop-in {
+  opacity: 0;
+  animation: popIn 1s ease forwards 1.5s;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.reveal-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  80% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* 打字机效果 */
+.typewriter-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  height: 4rem;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  opacity: 0.9;
+  max-width: 600px;
+  line-height: 1.6;
+  margin: 0;
+  min-height: 1.5rem;
+  display: inline-block;
+}
+
+.cursor {
+  width: 3px;
+  height: 1.5rem;
+  background-color: white;
+  display: inline-block;
+  margin-left: 4px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 向下滚动提示 */
+.scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards 2.5s;
+  z-index: 20;
+}
+
+.scroll-down i {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+  100% { transform: translateY(0); }
+}
+
+.avatar-container {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 2rem;
+  position: relative;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+/* 头像霓虹效果增强 */
+.avatar-image::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #ff00cc, #3333ff, #00ccff, #33ff33, #ffcc00, #ff00cc);
+  background-size: 400% 400%;
+  z-index: -1;
+  filter: blur(12px);
+  animation: glowingBorder 15s ease infinite;
+  opacity: 0.8;
+}
+
+@keyframes glowingBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.avatar-image:hover {
+  transform: scale(1.05) rotate(5deg);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(120, 0, 255, 0.8), 0 0 20px rgba(120, 0, 255, 0.5);
+  background: linear-gradient(to right, #eee, #fff, #eee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  to { background-position: 200% center; }
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.social-link {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.social-link:hover::before {
+  left: 100%;
+}
+
+.social-link i {
+  font-size: 1.4rem;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.social-link:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.social-link:hover i.github.icon {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.social-link:hover i.twitter.icon {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(29, 161, 242, 0.8);
+}
+
+.social-link:hover i.mail.icon {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(234, 67, 53, 0.8);
+}
+
+/* 内容区域 */
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* 探索内容区域 */
+.explore-section {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #343a40;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  border-radius: 3px;
+}
+
+.categories-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* 按钮发光效果 */
+.glow-on-hover {
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #495057;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.glow-on-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  z-index: -1;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  border-radius: 30px;
+}
+
+.glow-on-hover:hover::before {
+  opacity: 1;
+}
+
+.glow-on-hover:hover {
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(106, 17, 203, 0.5);
+  border-color: transparent;
+}
+
+/* 最新文章区域 */
+.latest-posts {
+  margin-top: 4rem;
+}
+
+.section-divider {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  margin: 0 auto 3rem;
+  border-radius: 2px;
+  position: relative;
+}
+
+.section-divider::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 20px;
+  height: 9px;
+  background: #fff;
+  border-radius: 5px;
+  animation: moveDivider 3s linear infinite;
+  box-shadow: 0 0 10px rgba(106, 17, 203, 0.8);
+}
+
+@keyframes moveDivider {
+  0% { left: 0; }
+  50% { left: calc(100% - 20px); }
+  100% { left: 0; }
+}
+
+/* 文章网格 */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* 文章卡片 */
+.post-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.post-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.post-card:hover::before {
+  transform: scaleX(1);
+}
+
+.post-card:hover {
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 1);
+}
+
+.post-card-content {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #343a40;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.post-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  transition: width 0.3s ease;
+}
+
+.post-title:hover {
+  color: #6a11cb;
+}
+
+.post-title:hover::after {
+  width: 100%;
+}
+
+.post-meta {
+  display: flex;
+  gap: 1rem;
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.post-date, .post-reading-time {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.post-summary {
+  color: #495057;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+.post-footer {
+  margin-top: auto;
+  border-top: 1px solid #e9ecef;
+  padding-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.post-categories, .post-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+}
+
+.ui.mini.label {
+  background: #f8f9fa;
+  color: #495057;
+  font-weight: normal;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  margin: 0.2rem;
+}
+
+.ui.mini.label:hover {
+  background: #e9ecef;
+  color: #212529;
+  transform: translateY(-2px);
+}
+
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #6a11cb;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-left: auto;
+  position: relative;
+  padding: 5px 10px;
+  overflow: hidden;
+}
+
+.read-more::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.read-more:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.read-more:hover {
+  color: #2575fc;
+  gap: 0.5rem;
+}
+
+.read-more i {
+  margin: 0 !important;
+  transition: transform 0.3s ease;
+}
+
+.read-more:hover i {
+  transform: translateX(3px);
+}
+
+/* 分页模块 */
+.pagination-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.page-info {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: #6c757d;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.page-link {
+  padding: 0.8rem 1.2rem;
+  background: white;
+  color: #495057;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(106, 17, 203, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.page-link:hover::before {
+  left: 100%;
+}
+
+.page-link.active {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+}
+
+.page-link:hover:not(.active):not(.disabled) {
+  background: #f8f9fa;
+  color: #6a11cb;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.page-link.disabled {
+  color: #adb5bd;
+  cursor: not-allowed;
+  background: #f8f9fa;
+}
+
+.page-link.prev, .page-link.next {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .avatar-container {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .content-container {
+    padding: 3rem 1rem;
+  }
+  
+  .post-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pagination-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .scroll-down {
+    bottom: 20px;
+  }
+}
+
+/* 覆盖侧边栏样式，确保主页设计全屏显示 */
+body {
+  overflow-x: hidden;
+  background: #f7f7fa;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+.dream-sidebar {
+  display: none !important;
+}
+
+/* 删除顶部边框的额外样式 */
+.dream-container {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.dream-content {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+</style>
+
+<!-- 添加一言API和打字机效果的JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 打字机效果函数
+  function typeWriter(text, element, speed, callback) {
+    let i = 0;
+    function typing() {
+      if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, speed);
+      } else if (callback) {
+        callback();
+      }
+    }
+    element.innerHTML = '';
+    typing();
+  }
+
+  // 获取一言数据
+  function fetchHitokoto() {
+    fetch('https://v1.hitokoto.cn')
+      .then(response => response.json())
+      .then(data => {
+        const hitokotoElement = document.getElementById('hitokoto');
+        typeWriter(data.hitokoto, hitokotoElement, 100);
+      })
+      .catch(err => {
+        console.error(err);
+        const hitokotoElement = document.getElementById('hitokoto');
+        typeWriter("{{ .Site.Params.motto }}", hitokotoElement, 100);
+      });
+  }
+
+  // 加载时获取一言
+  fetchHitokoto();
+
+  // 滚动动画
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // 观察所有带有reveal类的元素
+  document.querySelectorAll('.reveal, .reveal-item').forEach(el => {
+    observer.observe(el);
+  });
+  
+  // 添加随机流星效果
+  function createShootingStar() {
+    const star = document.createElement('div');
+    star.className = 'shooting-star';
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 30}%`;
+    star.style.animationDuration = `${Math.random() * 2 + 1}s`;
+    document.querySelector('.hero-overlay').appendChild(star);
+    
+    setTimeout(() => {
+      star.remove();
+    }, 3000);
+  }
+  
+  // 每隔几秒添加一颗流星
+  setInterval(createShootingStar, 4000);
+});
+</script>
+{{ end }} 

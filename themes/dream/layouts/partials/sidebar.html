@@ -1,0 +1,49 @@
+<div class="ui four wide column dream-sidebar">
+  <div class="ui segment">
+    <!-- 头像 -->
+    <div class="ui image">
+      {{ if isset .Site.Params "avatar" }}
+      <img src="{{ .Site.Params.avatar }}" alt="头像" />
+      {{ else }}
+      <img src="/img/default-avatar.jpg" alt="默认头像" />
+      {{ end }}
+    </div>
+
+    <!-- 作者信息 -->
+    <h3 class="ui header">
+      {{ if isset .Site.Params "author" }} {{ .Site.Params.author }} {{ else }}
+      博主 {{ end }}
+    </h3>
+
+    <!-- 网站简介 -->
+    <p>
+      {{ if isset .Site.Params "motto" }} {{ .Site.Params.motto }} {{ end }}
+    </p>
+
+    <!-- 社交链接 -->
+    {{ if .Site.Params.enableSocial }}
+    <div class="ui labels">
+      {{ with .Site.Params.social.github }}
+      <a href="{{ . }}" target="_blank" class="ui black label"
+        ><i class="github icon"></i>GitHub</a
+      >
+      {{ end }} {{ with .Site.Params.social.twitter }}
+      <a href="{{ . }}" target="_blank" class="ui blue label"
+        ><i class="twitter icon"></i>Twitter</a
+      >
+      {{ end }} {{ with .Site.Params.social.email }}
+      <a href="mailto:{{ . }}" class="ui red label"
+        ><i class="mail icon"></i>Email</a
+      >
+      {{ end }}
+    </div>
+    {{ end }}
+
+    <!-- 导航菜单 -->
+    <div class="ui secondary vertical menu">
+      {{ range .Site.Menus.main }}
+      <a class="item" href="{{ .URL }}"> {{ .Name }} </a>
+      {{ end }}
+    </div>
+  </div>
+</div>

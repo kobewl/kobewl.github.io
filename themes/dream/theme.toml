@@ -1,0 +1,12 @@
+name = "Dream"
+license = "MIT"
+licenselink = "https://github.com/g1eny0ung/hugo-theme-dream/blob/master/LICENSE"
+description = "A minimal hugo theme"
+homepage = "http://github.com/g1eny0ung/hugo-theme-dream"
+tags = ["blog", "clean", "simple", "dark mode", "personal"]
+features = ["blog", "responsive", "dark mode"]
+min_version = "0.57.2"
+
+[author]
+  name = "g1eny0ung"
+  homepage = "https://g1en.site" 

@@ -1,0 +1,70 @@
+baseURL = "https://kobewl.github.io/"
+languageCode = "zh-cn"
+title = "我的个人博客"
+theme = "dream"
+
+[params]
+  # 背景图片
+  background = "#f7f7f7"
+  
+  # 头像URL
+  avatar = "/img/avatar.jpg"
+  
+  # 作者名称
+  author = "博主"
+  
+  # 网站简介
+  motto = "欢迎来到我的个人博客"
+  
+  # 分类
+  categories = ["技术", "生活", "随想"]
+  
+  # 标签
+  tags = ["Hugo", "博客", "编程"]
+  
+  # 是否显示社交图标
+  enableSocial = true
+  
+  # 关于页面的链接
+  aboutURL = "/about"
+  
+  # 自定义CSS文件
+  customCSS = ["css/custom.css"]
+  
+  # 文章页面底部显示标签
+  showTagCloud = true
+  
+  # 侧边栏配置
+  [params.sidebar]
+    # 是否启用右侧边栏
+    enable = true
+    
+  # 社交链接配置  
+  [params.social]
+    github = "https://github.com/kobewl"
+    twitter = "https://twitter.com/yourusername"
+    email = "your-email@example.com"
+    # 可添加更多社交媒体链接
+
+# 菜单配置
+[menu]
+  [[menu.main]]
+    name = "首页"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "文章"
+    url = "/post"
+    weight = 2
+  [[menu.main]]
+    name = "分类"
+    url = "/categories"
+    weight = 3
+  [[menu.main]]
+    name = "标签"
+    url = "/tags"
+    weight = 4
+  [[menu.main]]
+    name = "关于"
+    url = "/about"
+    weight = 5 

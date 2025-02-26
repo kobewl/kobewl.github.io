@@ -21,11 +21,16 @@ theme = "dream"
   # 网站简介
   motto = "欢迎来到我的个人博客"
   
-  # 分类
-  categories = ["技术", "生活", "随想"]
+  # 分类 - 更新为与目录结构一致的分类
+  categories = [
+    "Java", "GitHub", "English Learning", "docs", "AI IDE",
+    "中间件", "微信公众号", "数据库", "数据结构与算法", "书籍",
+    "设计模式", "日记", "面试", "计算机网络", "分布式",
+    "Python", "Poetry Learning", "Linux", "Java框架"
+  ]
   
   # 标签
-  tags = ["Hugo", "博客", "编程"]
+  tags = ["Hugo", "博客", "编程", "技术", "学习", "Java", "Python", "算法", "数据库", "Linux"]
   
   # 是否显示社交图标
   enableSocial = true
